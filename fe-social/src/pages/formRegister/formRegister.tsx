@@ -59,7 +59,7 @@ export const FormRegister = () => {
           />
         </FormControl>
         <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
+          <InputLabel htmlFor="outlined-adornment-password">Confirm password</InputLabel>
           <OutlinedInput
             type={showPassword ? 'text' : 'password'}
             endAdornment={
@@ -73,7 +73,7 @@ export const FormRegister = () => {
                 </IconButton>
               </InputAdornment>
             }
-            label="Confirm Password"
+            label="Confirm password"
           />
         </FormControl>
         </div>
