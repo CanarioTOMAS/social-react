@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
@@ -19,20 +19,25 @@ import style from './styleFormLogin.module.css'
 
 export const FormLogin = () => {  
   const [showPassword, setShowPassword] = React.useState(false);
-  const [formEmail, setEmail] = React.useState('');
-  const [formPassword, setPassword] = React.useState('');
-  
+  const [formValue, setForm] = useState({
+    email: '',
+    password: ''
+  })
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event:any) => {
     event.preventDefault();
   };
-
-  const submit =()=>{
-    console.log(formEmail)
-    console.log(formPassword)
-    console.log('hola')
+  const handleInputChange = (event:any) => {
+      setForm({
+         ...formValue,
+            [event.target.name] : event.target.value
+        })
+    }
+  const submit =(e:any)=>{
+    e.preventDefault()
+   console.log( formValue)
 }  
 
 
@@ -41,14 +46,15 @@ export const FormLogin = () => {
     <div className={style.Body}> 
     <div><img src="https://socialup.com.ar/wp-content/uploads/2021/11/logo-blanco-135x71.png"  alt=""/></div>
       <FormControl sx={{ m:1, width:'25ch' }} variant="standard">
-        <TextField label="Email" variant="standard" value={formEmail} onChange={e =>setEmail(e.target.value)}></TextField>
+        <TextField label="Email" variant="standard" type='email' name='email' required value={formValue.email} onChange={handleInputChange}></TextField>
       </FormControl>
-      <Box>
+    <Box>
       <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
           <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
           <Input
-          value={formPassword} 
-          onChange={e =>setPassword(e.target.value)}
+          value={formValue.password} 
+          name="password"
+          onChange={handleInputChange}
             id="standard-adornment-password"
             type={showPassword ? 'text' : 'password'}
             endAdornment={
@@ -66,10 +72,10 @@ export const FormLogin = () => {
         </FormControl>
         </Box>
         <Box>
-        <Button variant="contained" endIcon={<SendIcon />} onClick={()=>submit()}>
+        <Button variant="contained" endIcon={<SendIcon />} onClick={submit} >
             Sign In
 </Button>
-<Box >
+</Box>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
@@ -84,8 +90,8 @@ export const FormLogin = () => {
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
-          </Box>
-</Box>
+
+
     </div>
   )
 }
