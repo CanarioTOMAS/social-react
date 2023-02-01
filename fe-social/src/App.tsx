@@ -1,9 +1,8 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import './pages/formRegister/formRegister.tsx';
 import { FormRegister } from './pages/formRegister/formRegister';
 import { FormForgotPassword } from './pages/forgot-password/form-forgotpassword';
+import { FormLogin } from './pages/formLogin/formLogin';
 
 function App() {
   return (
@@ -11,6 +10,7 @@ function App() {
       <header className="App-header">
         <FormForgotPassword/>
         <FormRegister/>
+      <FormLogin/>
       </header>
     </div>
   );
