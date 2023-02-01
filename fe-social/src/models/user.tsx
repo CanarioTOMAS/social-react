@@ -1,4 +1,5 @@
 export interface IUser{
+    id:string
     name:string;
     address:string;
     email:string;
@@ -6,3 +7,5 @@ export interface IUser{
     password:string;
     confirmPassword:string;
 }
+
+export type ILoginUser = Pick<IUser,'id'|'email' |'password'>

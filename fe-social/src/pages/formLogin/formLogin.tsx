@@ -15,22 +15,19 @@ import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import style from "./styleFormLogin.module.css";
-import { IUser } from "../../interface/user";
-import { red } from "@mui/material/colors";
+import { ILoginUser, IUser } from "../../models/user";
+import { Card } from "@mui/material";
 
 export const FormLogin = () => {
   const [showPassword, setShowPassword] = React.useState(false);
-  const [formValue, setForm] = useState<IUser>({
-    name: "",
-    phone: "",
-    address: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+  const [formValue, setForm] = useState<ILoginUser>({
+    id:"", 
+    email:"",
+    password: ""
   });
   useEffect(() => {
     document.title = `You clicked ${formValue.email} times`;
-  });
+  },[]);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -51,8 +48,9 @@ export const FormLogin = () => {
 
   return (
     <div className={style.Body}>
+      <Card sx={{p:5}}>
       <div>
-        <img
+        <img className={style.logoSocial}
           src="https://socialup.com.ar/wp-content/uploads/2021/11/logo-blanco-135x71.png"
           alt=""
         />
@@ -113,6 +111,7 @@ export const FormLogin = () => {
           { "Sign Up"}
         </Link>
       </Grid>
+      </Card>
     </div>
   );
 };
